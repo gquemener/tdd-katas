@@ -1,0 +1,12 @@
+{
+    "name": "gquemener/katas-string-sum",
+    "require-dev": {
+        "phpspec/phpspec": "^7.0"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GildasQ\\": "src/"
+        }
+    }
+}
