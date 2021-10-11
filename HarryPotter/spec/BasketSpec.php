@@ -8,6 +8,13 @@ use PhpSpec\ObjectBehavior;
 
 class BasketSpec extends ObjectBehavior
 {
+    function it_is_empty()
+    {
+        $this->beConstructedThrough('empty');
+
+        $this->books()->shouldReturn([]);
+    }
+
     function it_has_books(Book $book)
     {
         $this->beConstructedThrough('fillWith', [$book]);

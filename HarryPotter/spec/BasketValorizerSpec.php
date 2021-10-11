@@ -10,6 +10,11 @@ use GildasQ\HarryPotter;
 
 class BasketValorizerSpec extends ObjectBehavior
 {
+    function it_gives_a_value_of_0_EUR_to_an_empty_basket()
+    {
+        $this->valueOf(Basket::empty())->shouldBe(0);
+    }
+
     function it_gives_a_value_of_8_EUR_to_a_single_book(Book $book)
     {
         $this->valueOf(Basket::fillWith($book->getWrappedObject()))->shouldBe(800);

@@ -9,6 +9,11 @@ final class Basket
     ) {
     }
 
+    public static function empty(): self
+    {
+        return new self([]);
+    }
+
     public static function fillWith(Book ...$books): self
     {
         return new self($books);
