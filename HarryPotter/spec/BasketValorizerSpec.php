@@ -20,7 +20,7 @@ class BasketValorizerSpec extends ObjectBehavior
         $this->valueOf(Basket::fillWith($book->getWrappedObject()))->shouldBe(800);
     }
 
-    function it_gives_a_discount_of_5_percent_to_two_different_books()
+    function it_gives_a_discount_of_5_percent_to_two_different_volumes()
     {
         $basket = Basket::fillWith(
             HarryPotter::fromVolume(1),
@@ -38,5 +38,17 @@ class BasketValorizerSpec extends ObjectBehavior
         );
 
         $this->valueOf($basket)->shouldBe(1600);
+    }
+
+    function it_gives_a_discount_of_10_percent_to_three_different_volumes()
+    {
+        $basket = Basket::fillWith(
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(2),
+            HarryPotter::fromVolume(2),
+            HarryPotter::fromVolume(3),
+        );
+
+        $this->valueOf($basket)->shouldBe(2880);
     }
 }

@@ -12,6 +12,7 @@ class BasketValorizer
 
         $promoRate = match($basket->countVolumes()) {
             2 => 0.05,
+            3 => 0.1,
             default => 0,
         };
 
