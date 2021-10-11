@@ -8,7 +8,7 @@ class BasketValorizer
 
     public function valueOf(Basket $basket): int
     {
-        $total = $basket->countBooks() * self::UNIT_PRICE;
+        $total = $basket->countVolumes() * self::UNIT_PRICE;
 
         $promoRate = match($basket->countVolumes()) {
             2 => 0.05,
@@ -17,6 +17,6 @@ class BasketValorizer
             default => 0,
         };
 
-        return $total - $total * $promoRate;
+        return $total - $total * $promoRate + (($basket->countBooks() - $basket->countVolumes()) * self::UNIT_PRICE);
     }
 }
