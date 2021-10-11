@@ -14,13 +14,13 @@ final class Basket
         return new self($books);
     }
 
-    public function add(Book $book): void
-    {
-        $this->books[] = $book;
-    }
-
     public function books(): array
     {
         return $this->books;
+    }
+
+    public function countBooks(): int
+    {
+        return count($this->books);
     }
 }

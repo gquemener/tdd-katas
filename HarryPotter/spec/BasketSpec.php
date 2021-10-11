@@ -14,4 +14,11 @@ class BasketSpec extends ObjectBehavior
 
         $this->books()->shouldReturn([$book]);
     }
+
+    function it_counts_contained_books(Book $book)
+    {
+        $this->beConstructedThrough('fillWith', [$book, $book, $book]);
+
+        $this->countBooks()->shouldBe(3);
+    }
 }
