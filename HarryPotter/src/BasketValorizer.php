@@ -15,13 +15,13 @@ class BasketValorizer
         $total = $basket->countVolumes() * self::UNIT_PRICE;
 
         $promoRate = match($basket->countVolumes()) {
-            2 => 0.05,
-            3 => 0.1,
-            4 => 0.2,
-            5 => 0.25,
-            default => 0,
+            2 => 0.95,
+            3 => 0.9,
+            4 => 0.8,
+            5 => 0.75,
+            default => 1,
         };
 
-        return $total - $total * $promoRate + $this->valueOf($basket->duplicateBooks());
+        return $total * $promoRate + $this->valueOf($basket->duplicateBooks());
     }
 }
