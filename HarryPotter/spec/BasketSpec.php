@@ -5,6 +5,7 @@ namespace spec\GildasQ;
 use GildasQ\Basket;
 use GildasQ\Book;
 use PhpSpec\ObjectBehavior;
+use GildasQ\HarryPotter;
 
 class BasketSpec extends ObjectBehavior
 {
@@ -22,10 +23,31 @@ class BasketSpec extends ObjectBehavior
         $this->books()->shouldReturn([$book]);
     }
 
-    function it_counts_contained_books(Book $book)
+    function it_contains_3_books(Book $book)
     {
         $this->beConstructedThrough('fillWith', [$book, $book, $book]);
 
         $this->countBooks()->shouldBe(3);
+    }
+
+    function it_contains_1_volume()
+    {
+        $this->beConstructedThrough('fillWith', [
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(1),
+        ]);
+
+        $this->countVolumes()->shouldBe(1);
+    }
+
+    function it_contains_2_volumes()
+    {
+        $this->beConstructedThrough('fillWith', [
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(2),
+        ]);
+
+        $this->countVolumes()->shouldBe(2);
     }
 }

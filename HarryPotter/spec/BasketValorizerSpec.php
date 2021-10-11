@@ -29,4 +29,14 @@ class BasketValorizerSpec extends ObjectBehavior
 
         $this->valueOf($basket)->shouldBe(1520);
     }
+
+    function it_gives_a_value_of_16_EUR_to_two_identical_books()
+    {
+        $basket = Basket::fillWith(
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(1),
+        );
+
+        $this->valueOf($basket)->shouldBe(1600);
+    }
 }

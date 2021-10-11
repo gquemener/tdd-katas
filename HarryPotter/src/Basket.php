@@ -4,9 +4,14 @@ namespace GildasQ;
 
 final class Basket
 {
+    private array $volumes = [];
+
     private function __construct(
         private array $books
     ) {
+        foreach ($books as $book) {
+            $this->volumes[(string) $book->volume()] = true;
+        }
     }
 
     public static function empty(): self
@@ -27,5 +32,10 @@ final class Basket
     public function countBooks(): int
     {
         return count($this->books);
+    }
+
+    public function countVolumes(): int
+    {
+        return count($this->volumes);
     }
 }
