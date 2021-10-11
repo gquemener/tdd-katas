@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use GildasQ\Basket;
+use GildasQ\BasketValorizer;
+use GildasQ\HarryPotter;
+
+if ($argc !== 6) {
+    printf('Usage: %s <v1> <v2> <v3> <v4> <v5>' . PHP_EOL, $argv[0]);
+    die(127);
+}
+
+$valorizer = new BasketValorizer();
+
+$books = [];
+foreach (range(1, 5) as $volume) {
+    for ($i = 0; $i < $argv[$volume]; $i++) {
+        $books[] = HarryPotter::fromVolume($volume);
+    }
+}
+$basket = Basket::fillWith(...$books);
+
+printf('Basket Total: %.2f €' . PHP_EOL, $valorizer->valueOf($basket) / 100);
