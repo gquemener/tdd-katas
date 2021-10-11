@@ -57,14 +57,14 @@ class BasketValorizerSpec extends ObjectBehavior
     {
         $basket = Basket::fillWith(
             HarryPotter::fromVolume(1),
-            HarryPotter::fromVolume(3),
+            HarryPotter::fromVolume(4),
             HarryPotter::fromVolume(2),
             HarryPotter::fromVolume(4),
             HarryPotter::fromVolume(3),
             HarryPotter::fromVolume(3),
         );
 
-        $this->valueOf($basket)->shouldBe(4160);
+        $this->valueOf($basket)->shouldBe(4080);
     }
 
     function it_gives_a_discount_of_25_percent_to_five_different_volumes()
@@ -79,6 +79,6 @@ class BasketValorizerSpec extends ObjectBehavior
             HarryPotter::fromVolume(3),
         );
 
-        $this->valueOf($basket)->shouldBe(4600);
+        $this->valueOf($basket)->shouldBe(4520);
     }
 }

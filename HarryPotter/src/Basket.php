@@ -38,4 +38,23 @@ final class Basket
     {
         return count($this->volumes);
     }
+
+    public function duplicateBooks(): self
+    {
+        $books = $this->books;
+        $volumes = [];
+        foreach ($books as $i => $book) {
+            if (!isset($volumes[$book->volume()])) {
+                unset($books[$i]);
+                $volumes[$book->volume()] = true;
+            }
+        }
+
+        return self::fillWith(...$books);
+    }
+
+    public function equals(self $other): bool
+    {
+        return $this->books == $other->books;
+    }
 }

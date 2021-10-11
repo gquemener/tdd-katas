@@ -8,6 +8,10 @@ class BasketValorizer
 
     public function valueOf(Basket $basket): int
     {
+        if ($basket->equals(Basket::empty())) {
+            return 0;
+        }
+
         $total = $basket->countVolumes() * self::UNIT_PRICE;
 
         $promoRate = match($basket->countVolumes()) {
@@ -18,6 +22,6 @@ class BasketValorizer
             default => 0,
         };
 
-        return $total - $total * $promoRate + (($basket->countBooks() - $basket->countVolumes()) * self::UNIT_PRICE);
+        return $total - $total * $promoRate + $this->valueOf($basket->duplicateBooks());
     }
 }

@@ -11,6 +11,10 @@ final class HarryPotter implements Book
 
     public static function fromVolume(int $volume): self
     {
+        if ($volume < 1 || $volume > 5) {
+            throw new \InvalidArgumentException();
+        }
+
         return new self($volume);
     }
 

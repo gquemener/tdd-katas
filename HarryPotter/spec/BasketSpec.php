@@ -50,4 +50,23 @@ class BasketSpec extends ObjectBehavior
 
         $this->countVolumes()->shouldBe(2);
     }
+
+    function it_provides_another_basket_with_duplicate_books()
+    {
+        $this->beConstructedThrough('fillWith', [
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(2),
+            HarryPotter::fromVolume(3),
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(5),
+            HarryPotter::fromVolume(2),
+        ]);
+
+        $this->duplicateBooks()->shouldBeLike(Basket::fillWith(
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(1),
+            HarryPotter::fromVolume(2),
+        ));
+    }
 }
