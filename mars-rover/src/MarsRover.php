@@ -15,7 +15,7 @@ class MarsRover
     ) {
     }
 
-    public function execute(string $path): string
+    public function execute(string $path): void
     {
         foreach (str_split($path, 1) as $command) {
             $this->grid = match ($command) {
@@ -25,7 +25,10 @@ class MarsRover
                 default => $this->grid
             };
         }
+    }
 
+    public function position(): string
+    {
         return sprintf('%s:%s', $this->grid->position(), $this->grid->orientation());
     }
 }

@@ -29,118 +29,122 @@ class GridSpec extends ObjectBehavior
 
     function it_turns_right()
     {
-        $this->turnRight();
-        $this->orientation()->shouldBe('E');
+        $newGrid = $this->turnRight();
+        $newGrid->orientation()->shouldBe('E');
 
-        $this->turnRight();
-        $this->orientation()->shouldBe('S');
+        $newGrid = $newGrid->turnRight();
+        $newGrid->orientation()->shouldBe('S');
 
-        $this->turnRight();
-        $this->orientation()->shouldBe('W');
+        $newGrid = $newGrid->turnRight();
+        $newGrid->orientation()->shouldBe('W');
 
-        $this->turnRight();
-        $this->orientation()->shouldBe('N');
+        $newGrid = $newGrid->turnRight();
+        $newGrid->orientation()->shouldBe('N');
     }
 
     function it_turns_left()
     {
-        $this->turnLeft();
-        $this->orientation()->shouldBeLike('W');
-        $this->turnLeft();
-        $this->orientation()->shouldBeLike('S');
-        $this->turnLeft();
-        $this->orientation()->shouldBeLike('E');
-        $this->turnLeft();
-        $this->orientation()->shouldBeLike('N');
+        $newGrid = $this->turnLeft();
+        $newGrid->orientation()->shouldBeLike('W');
+
+        $newGrid = $newGrid->turnLeft();
+        $newGrid->orientation()->shouldBeLike('S');
+
+        $newGrid = $newGrid->turnLeft();
+        $newGrid->orientation()->shouldBeLike('E');
+
+        $newGrid = $newGrid->turnLeft();
+        $newGrid->orientation()->shouldBeLike('N');
     }
 
     function it_moves_in_the_north_direction()
     {
-        $this->move();
-        $this->position()->shouldBe('0:1');
+        $newGrid = $this->move();
+        $newGrid->position()->shouldBe('0:1');
     }
 
     function it_moves_in_the_east_direction()
     {
-        $this->turnRight();
-        $this->move();
+        $newGrid = $this->turnRight();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('1:0');
+        $newGrid->position()->shouldBe('1:0');
     }
 
     function it_moves_in_the_south_direction()
     {
-        $this->move();
-        $this->move();
-        $this->turnRight();
-        $this->move();
-        $this->turnRight();
-        $this->move();
+        $newGrid = $this->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->turnRight();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->turnRight();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('1:1');
+        $newGrid->position()->shouldBe('1:1');
     }
 
     function it_moves_in_the_west_direction()
     {
-        $this->turnRight();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->turnLeft();
-        $this->move();
-        $this->turnLeft();
-        $this->move();
+        $newGrid = $this->turnRight();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->turnLeft();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->turnLeft();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('2:1');
+        $newGrid->position()->shouldBe('2:1');
     }
 
     function it_wraps_to_the_opposite_end_of_the_grid_when_following_the_longitude_in_the_west_direction()
     {
-        $this->turnLeft();
-        $this->move();
+        $newGrid = $this->turnLeft();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('9:0');
+        $newGrid->position()->shouldBe('9:0');
     }
 
     function it_wraps_to_the_opposite_end_of_the_grid_when_following_the_longitude_in_the_east_direction()
     {
-        $this->turnRight();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
+        $newGrid = $this->turnRight();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('0:0');
+        $newGrid->position()->shouldBe('0:0');
     }
 
     function it_wraps_to_the_opposite_end_of_the_grid_when_following_the_latitude_in_the_south_direction()
     {
-        $this->turnLeft();
-        $this->turnLeft();
-        $this->move();
+        $newGrid = $this->turnLeft();
+        $newGrid = $newGrid->turnLeft();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('0:9');
+        $newGrid->position()->shouldBe('0:9');
     }
 
     function it_wraps_to_the_opposite_end_of_the_grid_when_following_the_latitude_in_the_north_direction()
     {
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
-        $this->move();
+        $newGrid = $this->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
+        $newGrid = $newGrid->move();
 
-        $this->position()->shouldBe('0:0');
+        $newGrid->position()->shouldBe('0:1');
     }
 }
