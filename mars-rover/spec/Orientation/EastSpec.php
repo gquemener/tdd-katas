@@ -15,7 +15,7 @@ class EastSpec extends ObjectBehavior
         $this->shouldBeAnInstanceOf(Orientation::class);
     }
 
-    function it_as_a_string_representation()
+    function it_has_a_string_representation()
     {
         $this->asString()->shouldBe('E');
     }
