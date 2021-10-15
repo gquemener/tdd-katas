@@ -37,50 +37,60 @@ final class Grid
         return $this->orientation->asString();
     }
 
-    public function turnRight(): void
+    public function turnRight(): self
     {
-        $this->orientation = $this->orientation->turnRight();
+        $self = clone $this;
+        $self->orientation = $this->orientation->turnRight();
+
+        return $self;
     }
 
-    public function turnLeft(): void
+    public function turnLeft(): self
     {
-        $this->orientation = $this->orientation->turnLeft();
+        $self = clone $this;
+        $self->orientation = $this->orientation->turnLeft();
+
+        return $self;
     }
 
-    public function move(): void
+    public function move(): self
     {
-        switch ($this->orientation::class) {
+        $self = clone $this;
+
+        switch ($self->orientation::class) {
             case North::class:
-                ++$this->y;
+                ++$self->y;
                 break;
 
             case East::class:
-                ++$this->x;
+                ++$self->x;
                 break;
 
             case South::class:
-                --$this->y;
+                --$self->y;
                 break;
 
             case West::class:
-                --$this->x;
+                --$self->x;
                 break;
         }
 
-        if ($this->x < 0) {
-            $this->x = $this->maxX;
+        if ($self->x < 0) {
+            $self->x = $self->maxX;
         }
 
-        if ($this->x > $this->maxX) {
-            $this->x = 0;
+        if ($self->x > $self->maxX) {
+            $self->x = 0;
         }
 
-        if ($this->y < 0) {
-            $this->y = $this->maxY;
+        if ($self->y < 0) {
+            $self->y = $self->maxY;
         }
 
-        if ($this->y > $this->maxY) {
-            $this->y = 0;
+        if ($self->y > $self->maxY) {
+            $self->y = 0;
         }
+
+        return $self;
     }
 }
