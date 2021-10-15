@@ -6,8 +6,14 @@ GID := $(shell id -g)
 PHP_TAG := 8.0-cli-alpine
 
 .PHONY: test
-test: composer.lock
+test: unit-test acceptance-test
+
+.PHONY: unit-test
+unit-test: composer.lock
 	docker run --rm -it -v "${PWD}":/app -w /app php:${PHP_TAG} bin/phpspec run -fpretty
+
+.PHONY: acceptance-test
+acceptance-test: composer.lock
 	docker run --rm -it -v "${PWD}":/app -w /app php:${PHP_TAG} bin/behat
 
 composer.lock:
