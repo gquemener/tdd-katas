@@ -2,11 +2,17 @@
 
 namespace spec\Gquemener\MarsRover;
 
+use Gquemener\MarsRover\Grid;
 use Gquemener\MarsRover\MarsRover;
 use PhpSpec\ObjectBehavior;
 
 class MarsRoverSpec extends ObjectBehavior
 {
+    function let()
+    {
+        $this->beConstructedWith(new Grid(10, 10));
+    }
+
     function it_provides_a_position_given_a_path()
     {
         $this->execute('MMRMMLM')->shouldReturn('2:3:N');

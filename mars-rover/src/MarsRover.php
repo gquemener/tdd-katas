@@ -20,16 +20,21 @@ class MarsRover
     private const WEST = 'W';
     private const ORIENTATIONS = [self::NORTH, self::EAST, self::SOUTH, self::WEST];
 
+    public function __construct(
+        private Grid $grid
+    ) {
+    }
+
     public function execute(string $path): string
     {
         foreach (str_split($path, 1) as $command) {
-            $this->handle($command);
+            $this->handle($this->grid, $command);
         }
 
         return sprintf('%d:%d:%s', $this->x, $this->y, self::ORIENTATIONS[$this->orientation]);
     }
 
-    private function handle(string $command): void
+    private function handle(Grid $grid, string $command): void
     {
         switch ($command) {
             case self::TURN_RIGHT:
