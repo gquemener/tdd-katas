@@ -12,6 +12,8 @@ use Gquemener\MarsRover\Grid;
  */
 class FeatureContext implements Context
 {
+    private ?MarsRover $rover;
+
     /**
      * @Given Mars has been splitted into a grid of :width x :height squares
      */
@@ -33,11 +35,11 @@ class FeatureContext implements Context
      */
     public function myCurrentPositionShouldBe($position)
     {
-        if ($position !== $this->rover->position()) {
+        if ($position !== $current = $this->rover->position()) {
             throw new \Exception(sprintf(
                 'Expecting to be at position "%s", currently at "%s".',
                 $position,
-                $this->rover->position()
+                $current
             ));
         }
     }
