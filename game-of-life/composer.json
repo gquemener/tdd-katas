@@ -1,0 +1,19 @@
+{
+    "name": "gquemener/game-of-life-kata",
+    "type": "project",
+    "require-dev": {
+        "behat/behat": "^3.8",
+        "phpspec/phpspec": "^7.1",
+        "beberlei/assert": "^3.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gquemener\\GameOfLifeKata\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "bin-dir": "bin"
+    }
+}
