@@ -10,6 +10,8 @@ class MarsRover
     private const TURN_LEFT = 'L';
     private const MOVE = 'M';
 
+    private bool $collisionDetected = false;
+
     public function __construct(
         private Grid $grid
     ) {
@@ -18,17 +20,21 @@ class MarsRover
     public function execute(string $path): void
     {
         foreach (str_split($path, 1) as $command) {
-            $this->grid = match ($command) {
-                self::TURN_RIGHT => $this->grid->turnRight(),
-                self::TURN_LEFT => $this->grid->turnLeft(),
-                self::MOVE => $this->grid->move(),
-                default => $this->grid
-            };
+            try {
+                $this->grid = match ($command) {
+                    self::TURN_RIGHT => $this->grid->turnRight(),
+                    self::TURN_LEFT => $this->grid->turnLeft(),
+                    self::MOVE => $this->grid->move(),
+                    default => $this->grid
+                };
+            } catch (ObstacleCollisionDetected) {
+                $this->collisionDetected = true;
+            }
         }
     }
 
     public function position(): string
     {
-        return sprintf('%s:%s', $this->grid->position(), $this->grid->orientation());
+        return ($this->collisionDetected ? 'O:' : '') . $this->grid->asString();
     }
 }

@@ -12,3 +12,9 @@ Feature: Moving the Mars rover
         Given Mars has been splitted into a grid of 10 x 10 squares
         When I reveive the "MMMMMMMMMM" commands sequence
         Then my current position should be "0:0:N"
+
+    Scenario: Successfully stop before hitting an obstacle
+        Given Mars has been splitted into a grid of 10 x 10 squares
+        And there is an obstacle at position (0, 3)
+        When I reveive the "MMMM" commands sequence
+        Then my current position should be "O:0:2:N"

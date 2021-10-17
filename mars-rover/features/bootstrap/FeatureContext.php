@@ -6,12 +6,15 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Gquemener\MarsRover\MarsRover;
 use Gquemener\MarsRover\Grid;
+use Gquemener\MarsRover\Surface;
+use Gquemener\MarsRover\Position;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context
 {
+    private ?Surface $grid;
     private ?MarsRover $rover;
 
     /**
@@ -19,7 +22,15 @@ class FeatureContext implements Context
      */
     public function marsHasBeenSplittedIntoAGridOfXSquares(int $width, int $height)
     {
-        $this->rover = new MarsRover(new Grid($width, $height));
+        $this->grid = new Surface($width, $height);
+    }
+
+    /**
+     * @Given there is an obstacle at position (:x, :y)
+     */
+    public function thereIsAnObstacleAtPosition(int $x, int $y)
+    {
+        $this->grid = $this->grid->withAddedObstacle(Position::at($x, $y));
     }
 
     /**
@@ -27,6 +38,7 @@ class FeatureContext implements Context
      */
     public function iReveiveTheCommandsSequence(string $commands)
     {
+        $this->rover = new MarsRover($this->grid);
         $this->rover->execute($commands);
     }
 
