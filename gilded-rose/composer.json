@@ -16,7 +16,9 @@
         "symplify/easy-coding-standard": "^9.3",
         "symplify/phpstan-extensions": "^9.3",
         "approvals/approval-tests": "^1.4",
-        "phpspec/phpspec": "^7.1"
+        "phpspec/phpspec": "^7.1",
+        "behat/behat": "^3.10",
+        "beberlei/assert": "^3.3"
     },
     "scripts": {
         "checkcode": "phpcs src tests --standard=PSR12",
