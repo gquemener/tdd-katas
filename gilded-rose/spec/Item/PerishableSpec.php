@@ -37,4 +37,12 @@ class PerishableSpec extends ObjectBehavior
         $this->sellIn()->shouldReturn(-1);
         $this->quality()->shouldReturn(13);
     }
+
+    function it_keep_quality_above_negative_threshold()
+    {
+        $this->beConstructedThrough('fromString', ['Item, 10, 0']);
+        $this->updateQuality();
+        $this->sellIn()->shouldReturn(9);
+        $this->quality()->shouldReturn(0);
+    }
 }

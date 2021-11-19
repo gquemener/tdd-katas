@@ -14,3 +14,11 @@ Feature: selling perishable item
             | 0       | 17      |
             | -1      | 15      |
             | -2      | 13      |
+
+    Scenario: Successfully limit lower quality value to 0
+        Given the perishable item "+5 Dexterity Vest, 3, 1"
+        Then the item should have the following history:
+            | Sell in | Quality |
+            | 3       | 1       |
+            | 2       | 0       |
+            | 1       | 0       |

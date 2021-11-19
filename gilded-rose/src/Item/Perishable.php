@@ -32,6 +32,10 @@ final class Perishable
     {
         --$this->item->sell_in;
 
+        if (0 === $this->item->quality) {
+            return;
+        }
+
         $q = 1;
         if ($this->item->sell_in < 0) {
             $q = 2;
