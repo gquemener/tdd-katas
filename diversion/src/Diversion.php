@@ -8,9 +8,13 @@ final class Diversion
 {
     public function countFor(int $n): int
     {
-        return match ($n) {
-            3 => 5,
-            4 => 8,
-        };
+        $result = 0;
+        foreach (range(0, (2**$n)-1) as $value) {
+            if (!str_contains(decbin($value), '11')) {
+                ++$result;
+            }
+        }
+
+        return $result;
     }
 }
