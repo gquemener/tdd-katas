@@ -1,0 +1,25 @@
+{
+    "name": "gquemener/diversion",
+    "description": "TDD Kata diversion",
+    "type": "project",
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "phpspec/phpspec": "^7.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Diversion\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Gildas Quéméner",
+            "email": "gildas.quemener@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "bin-dir": "bin"
+    }
+}
