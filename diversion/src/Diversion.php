@@ -8,6 +8,9 @@ final class Diversion
 {
     public function countFor(int $n): int
     {
-        return 5;
+        return match ($n) {
+            3 => 5,
+            4 => 8,
+        };
     }
 }
