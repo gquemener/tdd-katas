@@ -11,13 +11,15 @@ final class Diversion
         if (0 === $n) {
             return 0;
         }
-        $result = 0;
-        foreach (range(0, (2**$n)-1) as $value) {
-            if (!str_contains(decbin($value), '11')) {
-                ++$result;
-            }
+
+        if (1 === $n) {
+            return 2;
         }
 
-        return $result;
+        if (2 === $n) {
+            return 3;
+        }
+
+        return $this->countFor($n - 1) + $this->countFor($n - 2);
     }
 }
