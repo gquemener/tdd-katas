@@ -5,6 +5,7 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use GildedRose\ItemFactory;
 use GildedRose\Item\Perishable;
 
 /**
@@ -15,11 +16,15 @@ class FeatureContext implements Context
     private ?Perishable $item;
 
     /**
-     * @Given the perishable item :item
+     * @Given the :type item :item
      */
-    public function thePerishableItem(string $item)
+    public function theItem(string $type, string $item)
     {
-        $this->item = Perishable::fromString($item);
+        $this->item = match($type) {
+            'perishable' => ItemFactory::perishable($item),
+            'fine-tunable' => ItemFactory::fineTunable($item),
+            default => throw new InvalidArgumentException('Unknown item type'),
+        };
     }
 
     /**
